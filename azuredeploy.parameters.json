@@ -1,0 +1,15 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "hostingPlanName": {
+      "value": "umbraco-srvpln"
+    },
+    "package-storageAccount": { "value": "umbracopackages" },
+    "package-storageContainer": { "value": "template" },
+    "package-storageBlob": { "value": "Umbraco-Template.zip" },
+      "websiteName": {
+          "value": "umbraco-test1231231"
+      }
+  }
+}
