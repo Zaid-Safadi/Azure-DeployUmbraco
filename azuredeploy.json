@@ -4,9 +4,10 @@
     "parameters": {
         "hostingPlanName": {
             "type": "string",
-            "minLength": 1
+          "minLength": 1,
+          "defaultValue": "umbraco-zaidsafadi"
         },
-        "hostingPlan-SKU": {
+        "sku": {
             "type": "string",
             "allowedValues": [
                 "Free",
@@ -16,7 +17,7 @@
             ],
             "defaultValue": "Free"
         },
-      "hostingPlan-WorkerSize": {
+      "workerSize": {
         "type": "string",
         "allowedValues": [
           "0",
@@ -25,17 +26,20 @@
         ],
         "defaultValue": "0"
       },
-      "websiteName": {
+      "siteName": {
         "type": "string"
       },
-      "package-storageAccount":{
-        "type": "string"
+      "package-storageAccount": {
+        "type": "string",
+        "defaultValue": "umbracopackages"
       },
       "package-storageContainer": {
-        "type": "string"
+        "type": "string",
+        "defaultValue": "template"
       },
       "package-storageBlob": {
-        "type": "string"
+        "type": "string",
+        "defaultValue": "Umbraco-Template.zip"
       }
 
     },
@@ -51,13 +55,13 @@
             },
             "properties": {
                 "name": "[parameters('hostingPlanName')]",
-                "sku": "[parameters('hostingPlan-SKU')]",
-                "workerSize": "[parameters('hostingPlan-WorkerSize')]",
+                "sku": "[parameters('sku')]",
+                "workerSize": "[parameters('workerSize')]",
                 "numberOfWorkers": 1
             }
         },
       {
-        "name": "[parameters('websiteName')]",
+        "name": "[parameters('siteName')]",
         "type": "Microsoft.Web/sites",
         "location": "[resourceGroup().location]",
         "apiVersion": "2015-08-01",
@@ -69,7 +73,7 @@
           "displayName": "ZaidSafadi"
         },
         "properties": {
-          "name": "[parameters('websiteName')]",
+          "name": "[parameters('siteName')]",
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
         },
         "resources": [
@@ -79,7 +83,7 @@
             "location": "[resourceGroup().location]",
             "apiVersion": "2015-08-01",
             "dependsOn": [
-              "[concat('Microsoft.Web/sites/', parameters('websiteName'))]"
+              "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
             ],
             "tags": {
               "displayName": "umbraco"
@@ -89,7 +93,7 @@
               "dbType": "None",
               "connectionString": "",
               "setParameters": {
-                "IIS Web Application Name": "[parameters('websiteName')]"
+                "IIS Web Application Name": "[parameters('siteName')]"
               }
             }
           }

@@ -7,9 +7,6 @@
     },
     "package-storageAccount": { "value": "umbracopackages" },
     "package-storageContainer": { "value": "template" },
-    "package-storageBlob": { "value": "Umbraco-Template.zip" },
-      "websiteName": {
-          "value": "umbraco-test1231231"
-      }
+    "package-storageBlob": { "value": "Umbraco-Template.zip" }
   }
 }
